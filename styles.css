@@ -1,0 +1,127 @@
+/* Custom styles for RoadTrip Explorer */
+
+:root {
+  --primary-color: #588157;  /* New primary color */
+  --secondary-color: #3a5a40;  /* Darker shade of the primary color for hover effects */
+  --text-color: #1f2937;  /* Unchanged */
+  --background-color: #f3f4f6;  /* Unchanged */
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+header {
+  background-color: var(--primary-color);
+}
+
+header nav a:hover {
+  color: #a3b18a;  /* Lighter shade of the primary color */
+}
+
+.featured-trip {
+  transition: transform 0.3s ease;
+}
+
+.featured-trip:hover {
+  transform: translateY(-5px);
+}
+
+.search-input {
+  border: 2px solid var(--primary-color);
+  transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(88, 129, 87, 0.3);  /* Primary color with opacity */
+}
+
+/* New styles for the destination slider section */
+.destination-slider {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.slick-slide {
+  outline: none;
+}
+
+button {
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .destination-slider {
+    font-size: 2rem;
+  }
+}
+
+.nature-trip-tile {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nature-trip-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(88, 129, 87, 0.2);  /* Primary color with opacity */
+}
+
+.nature-trip-tile img {
+  transition: transform 0.3s ease;
+}
+
+.nature-trip-tile:hover img {
+  transform: scale(1.05);
+}
+
+#map {
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+}
+
+#directions-panel {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(88, 129, 87, 0.1);  /* Primary color with opacity */
+}
+
+#directions-panel:empty {
+  display: none;
+}
+
+.route-input {
+  border: 2px solid var(--primary-color);
+  transition: border-color 0.3s ease;
+}
+
+.route-input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.plan-button {
+  background-color: var(--primary-color);
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.plan-button:hover {
+  background-color: var(--secondary-color);
+}

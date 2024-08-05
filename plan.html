@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Roads - Plan Your Trip</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #588157;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100">
+    <header class="text-white p-4" style="background-color: var(--primary-color);">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">All Roads</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:text-green-200">Home</a></li>
+                    <li><a href="#" class="hover:text-green-200">Explore</a></li>
+                    <li><a href="plan.html" class="hover:text-green-200">Plan</a></li>
+                    <li><a href="#" class="hover:text-green-200">Community</a></li>
+                    <li><a href="#" class="hover:text-green-200">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-8">
+        <h2 class="text-3xl font-bold mb-4">Plan Your Road Trip</h2>
+        
+        <div class="mb-4">
+            <input type="text" id="start" placeholder="Enter start location" class="w-full p-2 mb-2 border border-gray-300 rounded">
+            <input type="text" id="end" placeholder="Enter destination" class="w-full p-2 mb-2 border border-gray-300 rounded">
+            <button onclick="calculateAndDisplayRoute()" class="bg-primary text-white px-4 py-2 rounded hover:bg-secondary">Plan Route</button>
+        </div>
+
+        <div id="map" class="mb-4"></div>
+
+        <div id="directions-panel"></div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 All Roads. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_PLACEHOLDER&callback=initMap"async defer></script>
+    <script>
+        let map;
+        let directionsService;
+        let directionsRenderer;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 40.0, lng: -98.5 },
+                zoom: 4
+            });
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+            directionsRenderer.setPanel(document.getElementById("directions-panel"));
+        }
+
+        function calculateAndDisplayRoute() {
+            const start = document.getElementById("start").value;
+            const end = document.getElementById("end").value;
+            directionsService.route(
+                {
+                    origin: start,
+                    destination: end,
+                    travelMode: google.maps.TravelMode.DRIVING
+                },
+                (response, status) => {
+                    if (status === "OK") {
+                        directionsRenderer.setDirections(response);
+                    } else {
+                        window.alert("Directions request failed due to " + status);
+                    }
+                }
+            );
+        }
+    </script>
+</body>
+</html>
